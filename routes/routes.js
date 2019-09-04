@@ -88,17 +88,20 @@ router.patch("/api/v1/patchMovieById", (req, res) => {
 //DELETE
 router.delete("/api/v1/deleteMovieById", (req, res) => {
     const { id } = req.query;
+
+    console.log(id);
+
     Movie.findByIdAndDelete(id)
-    .then(res => {
-        if(res === null){
-            res.status(201).send("Registro Eliminado");
-        }else{
-            res.status(304).send("Registro no Eliminado");
-        }
-    })
-    .catch(err => {
-        res.status(500).send(err)
-    })
+        .then(newMovie => {
+            if(newMovie !== null){
+                res.status(201).send("Registro eliminado")
+            }else{
+                res.status(304).send("Registro no eliminado");
+            }
+        })
+        .catch(err =>{
+            res.status(500).send(err);
+        })
 });
 
 
