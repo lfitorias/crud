@@ -11,7 +11,7 @@ const app = express();
 //Config body express app
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cors);
+app.use(cors());
 
 mongoose.connect(MONGOURI, {useNewUrlParser: true})
     .then(() => console.log("Conectado a la base de datos 🚀"))
